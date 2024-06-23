@@ -1,0 +1,31 @@
+const SignUp = () => {
+const [error,setError] = useState('');
+const {createUser} = useContext(AuthContext);
+
+
+const handleSignUp = event => {
+event.preventDefault();
+
+const form = event.target;
+const email = form.email.value;
+const password = form.password.value;
+
+setError('');
+if(passwor!===confirm){
+ setError('Password not match')
+ return
+}
+else if(passwor.length<6){
+ setError('Password is smaller')
+ return
+}
+createUser(email,password)
+.then(result =>)
+.cath (error => setError(error.message))
+
+return (
+ <form soSubmit = {handleSignUp }>
+</form>
+)
+}
+

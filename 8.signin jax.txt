@@ -1,0 +1,15 @@
+const {authSignIn} = useContext(AuthContext);
+const navigate = useNavigate();
+const location = useLocation();
+
+const comefrom = location.state?.comefrom?.pathname || '/'
+
+authSignIn(email,passwor)
+.then(result = >{
+  const loggeduser =result.user;
+  from.reset();
+  navigate(comefrom, {replace:true})
+
+.catch(error => {
+  setError = error.message;
+} )

@@ -1,0 +1,9 @@
+const {user,signOut} = useContext(AuthContext)
+
+const logOut = () => {
+ signOut()
+ .then(result => {})
+ .catch(error => setError(error.message)
+}
+
+{user && <span>user.email </span> <button onClick={logOut}>logout</button>}

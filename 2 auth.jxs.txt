@@ -1,0 +1,64 @@
+1. create context auth provider for context api
+2. create a context and set provide 
+3. set children props  
+4. set context value
+5. set provider in main.jxs file
+6. retrive user form home.jxs file // any here you need example home.jxs
+7. user registation using firebase signup.jax file 
+8. signin using firebase signin.jax file 
+9. set observer
+10. set private route 
+ 
+
+
+export const AuthContext  = createContext(null); // context create
+const auth = getAuth(app)
+
+const AuthProvider = ({children}) =>{
+const[user,setUser] = useState(null);
+
+// set load and wait for info
+const [loading, setLoading] = useState(true);
+
+const createUser = (email, password) => {
+ setLoading(true);
+ return createUserWithEmailAndPassword(auth,email,passwor)
+}
+
+const authSignIn= (email, password) => {
+ setLoading(true);
+ return signInWithEmailAndPassword(auth,email,passwor)
+}
+ 
+const authLogOut= () => {
+ return signOut(auth)
+}
+
+// observer user authentication state
+// outsite api call 
+useEffect (()=>{
+const unsubscrive = onAuthStateChange(auth,currentUser => {
+   setUser(currentUser);
+   setLoading(false);
+   // stop observing while unmount
+   return () => {
+     return unsubscrive; 
+   }
+},[])
+
+
+const user = {displayName:'Ala Uddin'}
+const authInfo = {
+  user,
+  createUser,
+  authSignIn,
+  signOut,
+  loading
+}
+    return(
+    <AuthContext.Provider value={authInfo }>
+      
+    </AuthContext.Provider>
+)
+}
+export default AuthProvider;
